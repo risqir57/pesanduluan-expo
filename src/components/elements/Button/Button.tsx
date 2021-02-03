@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {useTheme} from '@react-navigation/native';
+import * as React from "react";
+import { useTheme } from "@react-navigation/native";
 import {
   TouchableOpacity,
   TouchableOpacityProps,
@@ -7,8 +7,8 @@ import {
   ViewStyle,
   StyleProp,
   ActivityIndicator,
-} from 'react-native';
-import styles from './styles';
+} from "react-native";
+import styles from "./styles";
 
 interface ButtonProps extends TouchableOpacityProps {
   children: React.ReactNode;
@@ -34,32 +34,32 @@ const Button: React.FC<ButtonProps> = ({
   ...rest
 }) => {
   const {
-    colors: {primary: baseBackgroundColor},
+    colors: { primary: baseBackgroundColor },
   } = useTheme();
   let buttonBackgroundColor = backgroundColor || baseBackgroundColor;
   let buttonBorderColor = backgroundColor || baseBackgroundColor;
   let buttonBorderWidth = 1;
   let padding = 15;
-  let width = 'auto';
+  let width = "auto";
   let align:
-    | 'flex-start'
-    | 'center'
-    | 'flex-end'
-    | 'space-between'
-    | 'space-around'
-    | 'space-evenly'
-    | undefined = 'flex-start';
+    | "flex-start"
+    | "center"
+    | "flex-end"
+    | "space-between"
+    | "space-around"
+    | "space-evenly"
+    | undefined = "flex-start";
 
   if (isTransparent) {
-    buttonBackgroundColor = 'transparent';
+    buttonBackgroundColor = "transparent";
     buttonBorderWidth = 0;
     padding = 0;
   }
   if (isFullWidth) {
-    width = '100%';
+    width = "100%";
   }
   if (isChildrenCentered) {
-    align = 'center';
+    align = "center";
   }
 
   return (
@@ -75,7 +75,8 @@ const Button: React.FC<ButtonProps> = ({
         },
         style,
       ]}
-      {...rest}>
+      {...rest}
+    >
       {icon && <View style={styles.iconContainer}>{icon}</View>}
       <View
         style={[
@@ -85,7 +86,8 @@ const Button: React.FC<ButtonProps> = ({
             justifyContent: align,
           },
           childrenContainerStyle,
-        ]}>
+        ]}
+      >
         {isLoading ? (
           <ActivityIndicator size="small" color="white" />
         ) : (

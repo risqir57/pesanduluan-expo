@@ -1,0 +1,26 @@
+{
+  // The number of spaces in a tab.
+  "editor.tabSize": 2,
+  // Format a file on save.
+  "editor.formatOnSave": true,
+  // Enable/disable JavaScript validation. (For Flow)
+  "javascript.validate.enable": false,
+  // Enable/disable default JavaScript formatter. (For Prettier)
+  "javascript.format.enable": false,
+  // Controls how the editor should render whitespace characters.
+  "editor.renderWhitespace": "boundary",
+  // Quickly toggle between hiding and showing folders and files. (For Peep)
+  // To quickly hide/show files execute the Peep Toggle in Command Palette.
+  "editor.wordWrap": "on",
+  "editor.insertSpaces": true,
+  "files.exclude": {
+    ".*": false,
+    "ios/": false,
+    "*.lo*": false,
+    "*.json": false,
+    "LICENSE": false,
+    "android/": false,
+    "__tests__": false,
+    "node_modules/": false
+  }
+}
