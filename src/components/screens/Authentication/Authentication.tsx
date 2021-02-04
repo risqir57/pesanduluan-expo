@@ -1,20 +1,21 @@
-import * as React from 'react';
-import {View, Image} from 'react-native';
-import {Container, Text, Button} from '@src/components/elements';
-import AuthContext from '@src/context/auth-context';
-import useThemeColors from '@src/hooks/useThemeColors';
-import styles from './styles';
-import {useNavigation} from '@react-navigation/native';
+import * as React from "react";
+import { View, Image } from "react-native";
+import { Container, Text, Button } from "@src/components/elements";
+import AuthContext from "@src/context/auth-context";
+import useThemeColors from "@src/hooks/useThemeColors";
+import styles from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import { AppImagePlaceholder } from "@src/constants";
 
 type AuthenticationProps = {};
 
 const Authentication: React.FC<AuthenticationProps> = () => {
   const navigation = useNavigation();
-  const {primary} = useThemeColors();
-  const {signIn} = React.useContext(AuthContext);
+  const { primary } = useThemeColors();
+  const { signIn } = React.useContext(AuthContext);
 
   const _onConnectWithPhoneNumberButtonPressed = () => {
-    navigation.navigate('AuthWithPhoneNumberScreen');
+    navigation.navigate("AuthWithPhoneNumberScreen");
   };
   const _onSocialNetworkConnectButtonPressed = () => {
     signIn();
@@ -27,11 +28,13 @@ const Authentication: React.FC<AuthenticationProps> = () => {
         {
           backgroundColor: primary,
         },
-      ]}>
+      ]}
+    >
       <View style={styles.appIconContainer}>
         <Image
-          source={require('../../../assets/app/app_icons.png')}
+          source={require("../../../assets/app/app_icons.png")}
           style={styles.appIcon}
+          defaultSource={AppImagePlaceholder}
         />
       </View>
       <Container style={styles.loginMethodContainer}>
@@ -39,14 +42,16 @@ const Authentication: React.FC<AuthenticationProps> = () => {
           Get food you want.
         </Text>
         <Text isSecondary style={styles.introductionText}>
-          Puaskan diri dengan makanan yang kamu sukai, dengan cabang restoran di seluruh Indonesia.
-          Pengiriman atau bawa pulang atur sesuai dengan kebutuhan kamu.
+          Puaskan diri dengan makanan yang kamu sukai, dengan cabang restoran di
+          seluruh Indonesia. Pengiriman atau bawa pulang atur sesuai dengan
+          kebutuhan kamu.
         </Text>
         <View style={styles.loginMethod}>
           <Button
             style={styles.button}
             isFullWidth
-            onPress={_onConnectWithPhoneNumberButtonPressed}>
+            onPress={_onConnectWithPhoneNumberButtonPressed}
+          >
             <Text isBold isWhite>
               Connect with Phone Number
             </Text>
@@ -55,7 +60,8 @@ const Authentication: React.FC<AuthenticationProps> = () => {
             style={styles.button}
             backgroundColor="#4267b2"
             isFullWidth
-            onPress={_onSocialNetworkConnectButtonPressed}>
+            onPress={_onSocialNetworkConnectButtonPressed}
+          >
             <Text isBold isWhite>
               Connect with Facebook
             </Text>
@@ -64,7 +70,8 @@ const Authentication: React.FC<AuthenticationProps> = () => {
             style={styles.button}
             backgroundColor="#4285F3"
             isFullWidth
-            onPress={_onSocialNetworkConnectButtonPressed}>
+            onPress={_onSocialNetworkConnectButtonPressed}
+          >
             <Text isBold isWhite>
               Connect with Google
             </Text>

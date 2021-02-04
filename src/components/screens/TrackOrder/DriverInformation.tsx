@@ -1,13 +1,14 @@
-import * as React from 'react';
-import {View, Image} from 'react-native';
-import {driver} from '@src/data/mock-driver';
-import ListRowItem from '@src/components/elements/List/ListRowItem';
-import {Text, Icon} from '@src/components/elements';
-import styles from './styles';
+import * as React from "react";
+import { View, Image } from "react-native";
+import { driver } from "@src/data/mock-driver";
+import ListRowItem from "@src/components/elements/List/ListRowItem";
+import { Text, Icon } from "@src/components/elements";
+import styles from "./styles";
+import { AppImagePlaceholder } from "@src/constants";
 
 type DriverInformationProps = {};
 
-const {id, name, avatar, ratings, averageRating} = driver;
+const { id, name, avatar, ratings, averageRating } = driver;
 
 const DriverInformation: React.FC<DriverInformationProps> = () => {
   return (
@@ -17,7 +18,13 @@ const DriverInformation: React.FC<DriverInformationProps> = () => {
       note="Your driver"
       subTitle="Delivery time 14:04 PM"
       containerStyle={styles.driverContainer}
-      leftIcon={<Image source={avatar} style={styles.driverAvatar} />}
+      leftIcon={
+        <Image
+          source={avatar}
+          style={styles.driverAvatar}
+          defaultSource={AppImagePlaceholder}
+        />
+      }
       rightIcon={
         <View>
           <View style={styles.driverAverageRatingContainer}>

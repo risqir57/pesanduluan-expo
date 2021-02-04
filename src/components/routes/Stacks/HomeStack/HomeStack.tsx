@@ -1,13 +1,13 @@
-import * as React from 'react';
-import {View} from 'react-native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {Button, Icon, Text} from '@src/components/elements';
-import Home from '@src/components/screens/Home';
-import PlaceDetails from '@src/components/screens/PlaceDetails';
-import PlaceList from '@src/components/screens/PlaceList';
-import Checkout from '@src/components/routes/Stacks/CheckoutStack';
-import styles from './styles';
-import {ScreenNavigationProps} from '../types';
+import * as React from "react";
+import { View } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { Button, Icon, Text } from "@src/components/elements";
+import Home from "@src/components/screens/Home";
+import PlaceDetails from "@src/components/screens/PlaceDetails";
+import PlaceList from "@src/components/screens/PlaceList";
+import Checkout from "@src/components/routes/Stacks/CheckoutStack";
+import styles from "./styles";
+import { ScreenNavigationProps } from "../types";
 
 type HomeStackProps = {} & ScreenNavigationProps;
 type HomeStackParamList = {
@@ -20,7 +20,7 @@ type HomeStackParamList = {
 };
 const Stack = createStackNavigator<HomeStackParamList>();
 
-const HomeStack: React.FC<HomeStackProps> = ({navigation}) => {
+const HomeStack: React.FC<HomeStackProps> = ({ navigation }) => {
   const _renderExploreHeaderTitle = () => {
     return (
       <View style={styles.headerLeftContainer}>
@@ -42,7 +42,7 @@ const HomeStack: React.FC<HomeStackProps> = ({navigation}) => {
         size={22}
         isPrimary
         useIonicons
-        onPress={() => navigation.navigate('Notifications')}
+        onPress={() => navigation.navigate("Notifications")}
       />
     );
   };
@@ -51,7 +51,8 @@ const HomeStack: React.FC<HomeStackProps> = ({navigation}) => {
     return (
       <Button
         isTransparent
-        onPress={() => navigation.navigate('SearchDishesModal')}>
+        onPress={() => navigation.navigate("SearchDishesModal")}
+      >
         <Icon name="md-search" size={22} isPrimary useIonicons />
       </Button>
     );
@@ -63,8 +64,8 @@ const HomeStack: React.FC<HomeStackProps> = ({navigation}) => {
         options={() => {
           return {
             headerTitle: _renderExploreHeaderTitle,
-            title: 'Explore',
-            headerTitleAlign: 'left',
+            title: "Explore",
+            headerTitleAlign: "left",
             headerRight: _renderExploreHeaderRight,
             headerRightContainerStyle: styles.headerRightContainer,
           };
@@ -75,7 +76,7 @@ const HomeStack: React.FC<HomeStackProps> = ({navigation}) => {
       <Stack.Screen
         options={() => {
           return {
-            headerTitle: 'Neapolitan Pizza',
+            headerTitle: "Neapolitan Pizza",
             headerRight: _renderPlaceDetailHeaderRight,
             headerRightContainerStyle: styles.headerRightContainer,
           };
@@ -84,16 +85,16 @@ const HomeStack: React.FC<HomeStackProps> = ({navigation}) => {
         component={PlaceDetails}
       />
       <Stack.Screen
-        options={({route: {params}}) => {
+        options={({ route: { params } }) => {
           return {
-            headerTitle: params?.title || 'Places',
+            headerTitle: params?.title || "Places",
           };
         }}
         name="PlaceListScreen"
         component={PlaceList}
       />
       <Stack.Screen
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
         name="CheckoutScreen"
         component={Checkout}
       />

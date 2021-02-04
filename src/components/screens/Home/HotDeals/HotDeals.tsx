@@ -1,9 +1,9 @@
-import * as React from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {Carousel, Section, Card} from '@src/components/elements';
-import {Dimensions} from 'react-native';
-import {mockPlaces, Place} from '@src/data/mock-places';
-import PlaceCardInfo from '@src/components/common/PlaceCardInfo';
+import * as React from "react";
+import { useNavigation } from "@react-navigation/native";
+import { Carousel, Section, Card } from "@src/components/elements";
+import { Dimensions } from "react-native";
+import { mockPlaces, Place } from "@src/data/mock-places";
+import PlaceCardInfo from "@src/components/common/PlaceCardInfo";
 
 type HotDealsProps = {};
 
@@ -11,23 +11,25 @@ const HotDeals: React.FC<HotDealsProps> = () => {
   const navigation = useNavigation();
 
   const _onButtonActionPressed = () => {
-    navigation.navigate('PlaceListScreen', {title: 'Hot Deals'});
+    navigation.navigate("PlaceListScreen", { title: "Promo" });
   };
 
   const _onPlaceItemPressed = () => {
-    navigation.navigate('PlaceDetailsScreen');
+    navigation.navigate("PlaceDetailsScreen");
   };
 
   return (
     <Section
-      title="Hot Deals Around You"
-      actionButtonText="View more"
-      onButtonActionPressed={_onButtonActionPressed}>
+      title="Promo"
+      actionButtonText="Lihat semua"
+      onButtonActionPressed={_onButtonActionPressed}
+      withTopSpace={true}
+    >
       <Carousel
         data={mockPlaces}
-        itemWidth={Dimensions.get('window').width / 2 - 15}
+        itemWidth={Dimensions.get("window").width / 2 - 15}
         renderContent={(item: Place, index, parallaxProps) => {
-          const {image, title, subTitle} = item;
+          const { image, title, subTitle } = item;
           return (
             <Card
               coverImage={image}
@@ -35,7 +37,8 @@ const HotDeals: React.FC<HotDealsProps> = () => {
               title={title}
               subTitle={subTitle}
               parallaxProps={parallaxProps}
-              onPress={_onPlaceItemPressed}>
+              onPress={_onPlaceItemPressed}
+            >
               <PlaceCardInfo data={item} />
             </Card>
           );

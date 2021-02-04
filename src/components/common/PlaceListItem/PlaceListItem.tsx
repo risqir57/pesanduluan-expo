@@ -1,27 +1,32 @@
-import * as React from 'react';
-import {Image, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {Container, Text, Touchable} from '@src/components/elements';
-import {Place} from '@src/data/mock-places';
-import styles from './styles';
-import PlaceCardInfo from '../PlaceCardInfo';
+import * as React from "react";
+import { Image, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { Container, Text, Touchable } from "@src/components/elements";
+import { Place } from "@src/data/mock-places";
+import styles from "./styles";
+import PlaceCardInfo from "../PlaceCardInfo";
+import { AppImagePlaceholder } from "@src/constants";
 
 type PlaceListItemProps = {
   data: Place;
 };
 
-const PlaceListItem: React.FC<PlaceListItemProps> = ({data}) => {
-  const {image, title, subTitle} = data;
+const PlaceListItem: React.FC<PlaceListItemProps> = ({ data }) => {
+  const { image, title, subTitle } = data;
   const navigation = useNavigation();
 
   const _onPlaceItemPressed = () => {
-    navigation.navigate('PlaceDetailsScreen');
+    navigation.navigate("PlaceDetailsScreen");
   };
 
   return (
     <Touchable onPress={_onPlaceItemPressed}>
       <Container style={styles.container}>
-        <Image style={styles.image} source={image} />
+        <Image
+          style={styles.image}
+          source={image}
+          defaultSource={AppImagePlaceholder}
+        />
         <View style={styles.placeInfoContainer}>
           <View style={styles.placeInfo}>
             <Text style={styles.placeTitle}>{title}</Text>

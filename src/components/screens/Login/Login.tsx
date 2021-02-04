@@ -1,18 +1,19 @@
-import * as React from 'react';
-import {SafeAreaView, View, ScrollView, Alert, Image} from 'react-native';
-import {Text, TextField, Button} from '@src/components/elements';
-import useThemeColors from '@src/hooks/useThemeColors';
-import styles from './styles';
-import AuthContext from '@src/context/auth-context';
-import {useNavigation} from '@react-navigation/native';
+import * as React from "react";
+import { SafeAreaView, View, ScrollView, Alert, Image } from "react-native";
+import { Text, TextField, Button } from "@src/components/elements";
+import useThemeColors from "@src/hooks/useThemeColors";
+import styles from "./styles";
+import AuthContext from "@src/context/auth-context";
+import { useNavigation } from "@react-navigation/native";
+import { AppImagePlaceholder } from "@src/constants";
 
 type LoginProps = {};
 
 const Login: React.FC<LoginProps> = () => {
   const navigation = useNavigation();
-  const {signIn} = React.useContext(AuthContext);
-  const {card} = useThemeColors();
-  const [password, setPassword] = React.useState('');
+  const { signIn } = React.useContext(AuthContext);
+  const { card } = useThemeColors();
+  const [password, setPassword] = React.useState("");
 
   const _onPasswordFieldChange = (value: string) => {
     setPassword(value);
@@ -20,13 +21,13 @@ const Login: React.FC<LoginProps> = () => {
 
   const _onNextButtonPressed = () => {
     if (!password) {
-      Alert.alert('Error', 'Please enter your password!');
+      Alert.alert("Error", "Please enter your password!");
       return;
     }
     signIn();
   };
   const _onForgotPasswordButtonPressed = () => {
-    navigation.navigate('ForgotPasswordScreen');
+    navigation.navigate("ForgotPasswordScreen");
   };
 
   return (
@@ -34,8 +35,9 @@ const Login: React.FC<LoginProps> = () => {
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.formContainer}>
           <Image
-            source={require('../../../assets/profile/avatar.png')}
+            source={require("../../../assets/profile/avatar.png")}
             style={styles.avatar}
+            defaultSource={AppImagePlaceholder}
           />
           <Text isBold isHeadingTitle>
             Welcome! Vu Nguyen
@@ -45,7 +47,7 @@ const Login: React.FC<LoginProps> = () => {
           </Text>
           <TextField
             autoFocus
-            style={[{backgroundColor: card}, styles.passwordTextField]}
+            style={[{ backgroundColor: card }, styles.passwordTextField]}
             value={password}
             onChangeText={_onPasswordFieldChange}
             hasMargin
@@ -60,7 +62,8 @@ const Login: React.FC<LoginProps> = () => {
           isFullWidth
           isTransparent
           onPress={_onForgotPasswordButtonPressed}
-          style={styles.forgotPasswordButton}>
+          style={styles.forgotPasswordButton}
+        >
           <Text>Forgot Password</Text>
         </Button>
       </ScrollView>

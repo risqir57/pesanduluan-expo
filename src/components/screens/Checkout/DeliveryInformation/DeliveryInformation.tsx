@@ -1,7 +1,7 @@
-import * as React from 'react';
-import {View, Image, Platform} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {AndroidEvent} from '@react-native-community/datetimepicker';
+import * as React from "react";
+import { View, Image, Platform } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { AndroidEvent } from "@react-native-community/datetimepicker";
 import {
   Container,
   Text,
@@ -9,8 +9,9 @@ import {
   Section,
   Divider,
   DateTimePicker,
-} from '@src/components/elements';
-import styles from './styles';
+} from "@src/components/elements";
+import styles from "./styles";
+import { AppImagePlaceholder } from "@src/constants";
 
 type DeliveryInformationProps = {};
 
@@ -20,12 +21,12 @@ const DeliveryInformation: React.FC<DeliveryInformationProps> = () => {
   const [showDateTimePicker, setShowDateTimePicker] = React.useState(false);
 
   const onChangeAddressButtonPressed = () => {
-    navigation.navigate('ChangeAddressScreen');
+    navigation.navigate("ChangeAddressScreen");
   };
 
   const onChange = (event: AndroidEvent, selectedDate?: Date) => {
     const currentDate = selectedDate || date;
-    setShowDateTimePicker(Platform.OS === 'ios');
+    setShowDateTimePicker(Platform.OS === "ios");
     setDate(currentDate);
   };
 
@@ -37,13 +38,15 @@ const DeliveryInformation: React.FC<DeliveryInformationProps> = () => {
     <Section
       title="Deliver to"
       actionButtonText="Change address"
-      onButtonActionPressed={onChangeAddressButtonPressed}>
+      onButtonActionPressed={onChangeAddressButtonPressed}
+    >
       <Container>
         <View style={styles.deliveryContainer}>
           <View style={styles.locationContainer}>
             <Image
-              source={require('@src/assets/checkout/map.png')}
+              source={require("@src/assets/checkout/map.png")}
               style={styles.locationImage}
+              defaultSource={AppImagePlaceholder}
             />
           </View>
           <View>
@@ -53,7 +56,8 @@ const DeliveryInformation: React.FC<DeliveryInformationProps> = () => {
             <Text
               isSecondary
               accessibilityRole="link"
-              style={styles.locationInfo}>
+              style={styles.locationInfo}
+            >
               Add floor / unit number
             </Text>
             <Text isSecondary style={styles.locationInfo}>
@@ -72,7 +76,7 @@ const DeliveryInformation: React.FC<DeliveryInformationProps> = () => {
           <View style={styles.changeTimeContainer}>
             <Button isTransparent onPress={_onChangeTimeButtonPressed}>
               <Text isPrimary>
-                {showDateTimePicker ? 'Done' : 'Change time'}
+                {showDateTimePicker ? "Done" : "Change time"}
               </Text>
             </Button>
           </View>
@@ -82,7 +86,7 @@ const DeliveryInformation: React.FC<DeliveryInformationProps> = () => {
         <DateTimePicker
           value={date}
           mode="datetime"
-          onChange={onChange}
+          onChange={() => onChange}
           style={styles.dateTimePicker}
         />
       )}

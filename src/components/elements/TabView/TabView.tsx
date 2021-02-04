@@ -1,9 +1,9 @@
-import * as React from 'react';
-import {Dimensions, StyleProp, ViewStyle} from 'react-native';
-import {useTheme} from '@react-navigation/native';
-import Icon from '../Icon';
-import {TabView as RNTabView, TabBar, SceneMap} from 'react-native-tab-view';
-import styles from './styles';
+import * as React from "react";
+import { Dimensions, StyleProp, ViewStyle } from "react-native";
+import { useTheme } from "@react-navigation/native";
+import Icon from "../Icon";
+import { TabView as RNTabView, TabBar, SceneMap } from "react-native-tab-view";
+import styles from "./styles";
 
 type Cenes = {
   [key: string]: React.ComponentType<any>;
@@ -32,12 +32,12 @@ const TabView: React.FC<TabViewProps> = ({
   tabBarStyle,
 }) => {
   const {
-    colors: {card, primary, text},
+    colors: { card, primary, text },
   } = useTheme();
   const [navigationStateIndex, setNavigationStateIndex] = React.useState(0);
 
   const _renderIcon = (props: any) => {
-    const {route} = props;
+    const { route } = props;
     if (route.icon) {
       return <Icon name={route.icon} size={20} color="white" />;
     }
@@ -74,14 +74,14 @@ const TabView: React.FC<TabViewProps> = ({
         <TabBar
           {...props}
           renderIcon={_renderIcon}
-          style={[{backgroundColor: card}, tabBarStyle]}
+          style={[{ backgroundColor: card }, tabBarStyle]}
           labelStyle={styles.tabBarLabel}
           activeColor={primary}
           inactiveColor={text}
           tabStyle={
             isTabBarFullWidth
               ? {
-                  width: Dimensions.get('window').width / tabData.length,
+                  width: Dimensions.get("window").width / tabData.length,
                 }
               : styles.tabBar
           }
@@ -93,7 +93,7 @@ const TabView: React.FC<TabViewProps> = ({
       )}
       renderScene={SceneMap(scenes)}
       onIndexChange={onIndexChange}
-      initialLayout={{width: Dimensions.get('window').width, height: 0}}
+      initialLayout={{ width: Dimensions.get("window").width, height: 0 }}
     />
   );
 };

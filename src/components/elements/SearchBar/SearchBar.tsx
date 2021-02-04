@@ -1,9 +1,9 @@
-import * as React from 'react';
-import {View} from 'react-native';
-import Container from '../Container';
-import TextField from '../TextField';
-import styles from './styles';
-import {useTheme} from '@react-navigation/native';
+import * as React from "react";
+import { View } from "react-native";
+import Container from "../Container";
+import TextField from "../TextField";
+import styles from "./styles";
+import { useTheme } from "@react-navigation/native";
 
 type SearchBarProps = {
   leftIconName?: string;
@@ -11,15 +11,15 @@ type SearchBarProps = {
 };
 
 const SearchBar: React.FC<SearchBarProps> = ({
-  leftIconName = 'search',
-  placeholder = 'Search',
+  leftIconName = "search",
+  placeholder = "Search",
 }) => {
   const {
-    colors: {card},
+    colors: { card },
   } = useTheme();
   return (
     <View>
-      <Container style={[styles.searchContainer, {backgroundColor: card}]}>
+      <Container style={[styles.searchContainer, { backgroundColor: card }]}>
         <TextField leftIcon={leftIconName} placeholder={placeholder} />
       </Container>
     </View>

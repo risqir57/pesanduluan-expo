@@ -1,10 +1,13 @@
-import * as React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import HomeStack from '../Stacks/HomeStack';
-import AccountStack from '../Stacks/AccountStack';
-import NotificationStack from '../Stacks/NotificationStack';
-import ActivityHistoryStack from '../Stacks/ActivityHistoryStack';
+import * as React from "react";
+import {
+  createBottomTabNavigator,
+  useBottomTabBarHeight,
+} from "@react-navigation/bottom-tabs";
+import Icon from "react-native-vector-icons/FontAwesome5";
+import HomeStack from "../Stacks/HomeStack";
+import AccountStack from "../Stacks/AccountStack";
+import NotificationStack from "../Stacks/NotificationStack";
+import ActivityHistoryStack from "../Stacks/ActivityHistoryStack";
 // import Documentation from '@src/components/screens/Documentation';
 
 type TabNavigationProps = {};
@@ -18,28 +21,28 @@ const { Navigator, Screen } = Tab;
 
 const renderTabBarIcon = (routeName: string) => {
   return (props: TabBarIconProps) => {
-    const {color} = props;
-    let iconName = 'home';
+    const { color } = props;
+    let iconName = "home";
     switch (routeName) {
-      case 'Explore':
-        iconName = 'compass';
+      case "Beranda":
+        iconName = "compass";
         break;
-      case 'Activity':
-        iconName = 'history';
+      case "History":
+        iconName = "history";
         break;
-      case 'Notifications':
-        iconName = 'bell';
+      case "Notifikasi":
+        iconName = "bell";
         break;
-      case 'Account':
-        iconName = 'user';
+      case "Akun":
+        iconName = "user";
         break;
-      case 'Documentation':
-        iconName = 'book';
-        break;
+      // case "Documentation":
+      //   iconName = "book";
+      //   break;
       default:
         break;
     }
-    return <Icon name={iconName} solid size={24} color={color} />;
+    return <Icon name={iconName} solid size={22} color={color} />;
   };
 };
 
@@ -48,20 +51,29 @@ const TabNavigation: React.FC<TabNavigationProps> = () => {
     <Navigator
       initialRouteName="Home"
       tabBarOptions={{
-        showLabel: false
+        style: {
+          height: 55,
+        },
+        tabStyle: {
+          height: 50,
+        },
+        labelStyle: {
+          fontSize: 11,
+        },
       }}
       screenOptions={(props) => {
         const {
-          route: {name: routeName},
+          route: { name: routeName },
         } = props;
         return {
           tabBarIcon: renderTabBarIcon(routeName),
         };
-      }}>
-      <Screen name="Explore" component={HomeStack} />
-      <Screen name="Activity" component={ActivityHistoryStack} />
-      <Screen name="Notifications" component={NotificationStack} />
-      <Screen name="Account" component={AccountStack} />
+      }}
+    >
+      <Screen name="Beranda" component={HomeStack} />
+      <Screen name="History" component={ActivityHistoryStack} />
+      <Screen name="Notifikasi" component={NotificationStack} />
+      <Screen name="Akun" component={AccountStack} />
       {/* <Screen name="Documentation" component={Documentation} /> */}
     </Navigator>
   );

@@ -1,18 +1,25 @@
-import * as React from 'react';
-import {ScrollView, Image} from 'react-native';
-import ListRowItem from '@src/components/elements/List/ListRowItem';
-import {activityHistoryDetail} from '@src/data/mock-activity-history';
-import {Divider, Container, Icon, Button, Text} from '@src/components/elements';
-import useThemeColors from '@src/hooks/useThemeColors';
-import StepIndicator from 'react-native-step-indicator';
-import {StepIndicatorStyles} from 'react-native-step-indicator/lib/typescript/src/types';
-import OrderSummary from './OrderSummary';
-import styles from './styles';
+import * as React from "react";
+import { ScrollView, Image } from "react-native";
+import ListRowItem from "@src/components/elements/List/ListRowItem";
+import { activityHistoryDetail } from "@src/data/mock-activity-history";
+import {
+  Divider,
+  Container,
+  Icon,
+  Button,
+  Text,
+} from "@src/components/elements";
+import useThemeColors from "@src/hooks/useThemeColors";
+import StepIndicator from "react-native-step-indicator";
+import { StepIndicatorStyles } from "react-native-step-indicator/lib/typescript/src/types";
+import OrderSummary from "./OrderSummary";
+import styles from "./styles";
+import { AppImagePlaceholder } from "@src/constants";
 
 type ActivityHistoryDetailProps = {};
 
 const ActivityHistoryDetail: React.FC<ActivityHistoryDetailProps> = () => {
-  const {primary, text, background, secondary} = useThemeColors();
+  const { primary, text, background, secondary } = useThemeColors();
 
   const labels = [activityHistoryDetail.from, activityHistoryDetail.to];
 
@@ -27,16 +34,16 @@ const ActivityHistoryDetail: React.FC<ActivityHistoryDetailProps> = () => {
     stepIndicatorLabelFontSize: 12,
     currentStepIndicatorLabelFontSize: 12,
     stepIndicatorLabelCurrentColor: text,
-    stepIndicatorLabelFinishedColor: 'white',
+    stepIndicatorLabelFinishedColor: "white",
     stepIndicatorLabelUnFinishedColor: text,
     labelColor: text,
-    labelAlign: 'flex-start',
+    labelAlign: "flex-start",
     currentStepLabelColor: text,
     separatorStrokeWidth: 2,
   };
 
-  const renderLabel = (params: {position: number; stepStatus: string}) => {
-    const {position} = params;
+  const renderLabel = (params: { position: number; stepStatus: string }) => {
+    const { position } = params;
     switch (position) {
       case 0:
         return <Icon name="utensils" isPrimary />;
@@ -55,8 +62,9 @@ const ActivityHistoryDetail: React.FC<ActivityHistoryDetailProps> = () => {
         subTitle={`Status: ${activityHistoryDetail.status}`}
         leftIcon={
           <Image
-            source={require('@src/assets/common/food.png')}
+            source={require("@src/assets/common/food.png")}
             style={styles.icon}
+            defaultSource={AppImagePlaceholder}
           />
         }
       />

@@ -1,4 +1,4 @@
-import {useTheme} from '@react-navigation/native';
+import { useTheme } from "@react-navigation/native";
 
 type ThemeColors = {
   primary: string;
@@ -10,7 +10,7 @@ type ThemeColors = {
 };
 
 const useThemeColors = () => {
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   const themeColors: ThemeColors = {
     secondary: colors.text,
     ...colors,

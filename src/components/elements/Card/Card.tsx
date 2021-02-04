@@ -1,20 +1,21 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Image,
   ViewProps,
   StyleProp,
   TextStyle,
   ImageSourcePropType,
-} from 'react-native';
-import {useTheme} from '@react-navigation/native';
-import Touchable from '../Touchable';
-import Container from '../Container';
-import Text from '../Text';
-import styles from './styles';
+} from "react-native";
+import { useTheme } from "@react-navigation/native";
+import Touchable from "../Touchable";
+import Container from "../Container";
+import Text from "../Text";
+import styles from "./styles";
 import {
   ParallaxImage,
   AdditionalParallaxProps,
-} from 'react-native-snap-carousel';
+} from "react-native-snap-carousel";
+import { AppImagePlaceholder } from "@src/constants";
 
 type OwnProps = {
   coverImage?: ImageSourcePropType;
@@ -43,21 +44,23 @@ const Card: React.FC<CardProps> = ({
   ...rest
 }) => {
   const {
-    colors: {card},
+    colors: { card },
   } = useTheme();
 
   const _renderCard = () => {
     return (
       <Container
-        style={[{backgroundColor: card}, styles.card, style]}
-        {...rest}>
+        style={[{ backgroundColor: card }, styles.card, style]}
+        {...rest}
+      >
         {coverImage && (
           <Container
             style={
               isSmallCover
                 ? styles.coverImageSmallContainer
                 : styles.coverImageContainer
-            }>
+            }
+          >
             {parallaxProps ? (
               <ParallaxImage
                 parallaxFactor={0.4}
@@ -67,7 +70,11 @@ const Card: React.FC<CardProps> = ({
                 {...parallaxProps}
               />
             ) : (
-              <Image source={coverImage} style={styles.coverImage} />
+              <Image
+                source={coverImage}
+                style={styles.coverImage}
+                defaultSource={AppImagePlaceholder}
+              />
             )}
           </Container>
         )}
@@ -80,7 +87,8 @@ const Card: React.FC<CardProps> = ({
           {subTitle && (
             <Text
               numberOfLines={1}
-              style={[styles.cardSubtitle, subTitleStyle]}>
+              style={[styles.cardSubtitle, subTitleStyle]}
+            >
               {subTitle}
             </Text>
           )}

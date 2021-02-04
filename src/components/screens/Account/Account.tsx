@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Container,
   Icon,
@@ -6,7 +6,7 @@ import {
   SearchBar,
   Button,
   Text,
-} from '@src/components/elements';
+} from "@src/components/elements";
 import {
   ScrollView,
   Image,
@@ -14,30 +14,31 @@ import {
   Alert,
   AlertButton,
   I18nManager,
-} from 'react-native';
-import ListRowItem from '@src/components/elements/List/ListRowItem';
-import {profile} from '@src/data/mock-profile';
-import styles from './styles';
-import {useNavigation} from '@react-navigation/native';
-import AuthContext from '@src/context/auth-context';
+} from "react-native";
+import ListRowItem from "@src/components/elements/List/ListRowItem";
+import { profile } from "@src/data/mock-profile";
+import styles from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import AuthContext from "@src/context/auth-context";
+import { AppImagePlaceholder } from "@src/constants";
 
 type AccountProps = {};
 
 const Account: React.FC<AccountProps> = () => {
   const navigation = useNavigation();
-  const {signOut} = React.useContext(AuthContext);
-  const chevronIconName = I18nManager.isRTL ? 'chevron-left' : 'chevron-right';
+  const { signOut } = React.useContext(AuthContext);
+  const chevronIconName = I18nManager.isRTL ? "chevron-left" : "chevron-right";
 
   const alertButtons: AlertButton[] = [
     {
-      text: 'Cancel',
-      style: 'cancel',
+      text: "Cancel",
+      style: "cancel",
     },
-    {text: 'OK', onPress: () => signOut()},
+    { text: "OK", onPress: () => signOut() },
   ];
 
   const onLogoutButtonPressed = () => {
-    Alert.alert('Confirm', 'Are you sure you want to logout?', alertButtons);
+    Alert.alert("Confirm", "Are you sure you want to logout?", alertButtons);
   };
 
   return (
@@ -48,9 +49,13 @@ const Account: React.FC<AccountProps> = () => {
         <ListRowItem
           title={profile.name}
           subTitle="Edit Profile"
-          onPress={() => navigation.navigate('EditProfileScreen')}
+          onPress={() => navigation.navigate("EditProfileScreen")}
           leftIcon={
-            <Image source={profile.avatar} style={styles.profileAvatar} />
+            <Image
+              source={profile.avatar}
+              style={styles.profileAvatar}
+              defaultSource={AppImagePlaceholder}
+            />
           }
           rightIcon={<Icon name={chevronIconName} />}
         />
@@ -60,26 +65,26 @@ const Account: React.FC<AccountProps> = () => {
         <Divider />
         <ListRowItem
           title="Order History"
-          onPress={() => navigation.navigate('OrderHistoryScreen')}
+          onPress={() => navigation.navigate("OrderHistoryScreen")}
           rightIcon={<Icon name={chevronIconName} />}
         />
         <Divider />
         <ListRowItem
           title="Delivery Address"
-          onPress={() => navigation.navigate('SavedAddressesScreen')}
+          onPress={() => navigation.navigate("SavedAddressesScreen")}
           rightIcon={<Icon name={chevronIconName} />}
         />
         <Divider />
         <ListRowItem
           title="Settings"
-          onPress={() => navigation.navigate('SettingsScreen')}
+          onPress={() => navigation.navigate("SettingsScreen")}
           rightIcon={<Icon name={chevronIconName} />}
         />
         <Divider />
 
         <ListRowItem
           title="Support Center"
-          onPress={() => navigation.navigate('SupportCenterScreen')}
+          onPress={() => navigation.navigate("SupportCenterScreen")}
           rightIcon={<Icon name={chevronIconName} />}
         />
         <Divider />

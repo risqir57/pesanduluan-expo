@@ -1,22 +1,28 @@
-import * as React from 'react';
-import {Image} from 'react-native';
-import {Carousel, Container, Text} from '@src/components/elements';
+import * as React from "react";
+import { Image } from "react-native";
+import { Carousel, Container, Text } from "@src/components/elements";
 import {
   mockMerchantCaimpaigns,
   MerchantCampaign,
-} from '@src/data/mock-merchant-caimpaigns';
-import styles from './styles';
+} from "@src/data/mock-merchant-caimpaigns";
+import styles from "./styles";
+import { AppImagePlaceholder } from "@src/constants";
 
 type MerchantCampaignsProps = {};
 
 const MerchantCampaigns: React.FC<MerchantCampaignsProps> = () => {
   const _renderContent = (campaign: MerchantCampaign) => {
-    const {id, image, title, subTitle, backgroundColor} = campaign;
+    const { id, image, title, subTitle, backgroundColor } = campaign;
     return (
       <Container
         key={id}
-        style={[styles.campaignItem, {backgroundColor: backgroundColor}]}>
-        <Image source={image} style={styles.campaignImage} />
+        style={[styles.campaignItem, { backgroundColor: backgroundColor }]}
+      >
+        <Image
+          source={image}
+          style={styles.campaignImage}
+          defaultSource={AppImagePlaceholder}
+        />
         <Container style={styles.campaignTitleContainer}>
           <Text style={styles.campaignTitle}>{title}</Text>
           <Text style={styles.campaignSubTitle}>{subTitle}</Text>

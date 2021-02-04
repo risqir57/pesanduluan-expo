@@ -1,11 +1,11 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   root: {
     flex: 1,
   },
   searchBarContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingLeft: 10,
   },
   closeIconContainer: {
@@ -16,15 +16,15 @@ export default StyleSheet.create({
   },
   separator: {
     height: 0.5,
-    width: '100%',
-    alignSelf: 'flex-end',
+    width: "100%",
+    alignSelf: "flex-end",
   },
   sectionHeaderText: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     paddingTop: 15,
     paddingBottom: 15,
     paddingHorizontal: 10,
-    textAlign: 'left',
+    textAlign: "left",
   },
 });

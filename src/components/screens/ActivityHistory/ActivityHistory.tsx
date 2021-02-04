@@ -1,11 +1,12 @@
-import * as React from 'react';
-import {View, Image} from 'react-native';
-import {List} from '@src/components/elements';
-import {activityHistoryList} from '@src/data/mock-activity-history';
-import styles from './styles';
-import {formatCurrency} from '@src/utils/number-formatter';
-import {ListRowItemProps} from '@src/components/elements/List/ListRowItem';
-import {useNavigation} from '@react-navigation/native';
+import * as React from "react";
+import { View, Image } from "react-native";
+import { List } from "@src/components/elements";
+import { activityHistoryList } from "@src/data/mock-activity-history";
+import styles from "./styles";
+import { formatCurrency } from "@src/utils/number-formatter";
+import { ListRowItemProps } from "@src/components/elements/List/ListRowItem";
+import { useNavigation } from "@react-navigation/native";
+import { AppImagePlaceholder } from "@src/constants";
 
 type ActivityHistoryProps = {};
 
@@ -15,7 +16,7 @@ const ActivityHistory: React.FC<ActivityHistoryProps> = () => {
     const {
       restaurantName,
       date,
-      orderDetail: {totalItems, price},
+      orderDetail: { totalItems, price },
       bookingId,
     } = item;
     return {
@@ -23,11 +24,12 @@ const ActivityHistory: React.FC<ActivityHistoryProps> = () => {
       title: restaurantName,
       subTitle: `${totalItems} items | ${formatCurrency(totalItems * price)}`,
       note: date,
-      onPress: () => navigation.navigate('ActivityHistoryDetailScreen'),
+      onPress: () => navigation.navigate("ActivityHistoryDetailScreen"),
       leftIcon: (
         <Image
-          source={require('@src/assets/common/food.png')}
+          source={require("@src/assets/common/food.png")}
           style={styles.listItemImage}
+          defaultSource={AppImagePlaceholder}
         />
       ),
     };
