@@ -1,24 +1,24 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Button,
   Container,
   Icon,
   SearchBar,
   Text,
-} from '@src/components/elements';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {SectionList, View} from 'react-native';
-import styles from './styles';
-import {useNavigation} from '@react-navigation/native';
-import DishItem from '@src/components/common/DishItem';
-import useThemeColors from '@src/hooks/useThemeColors';
-import {mockPlaceDetails} from '@src/data/mock-places';
+} from "@src/components/elements";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { SectionList, View } from "react-native";
+import styles from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import DishItem from "@src/components/common/DishItem";
+import useThemeColors from "@src/hooks/useThemeColors";
+import { mockPlaceDetails } from "@src/data/mock-places";
 
 type SearchDishesProps = {};
 
 const SearchDishes: React.FC<SearchDishesProps> = () => {
   const navigation = useNavigation();
-  const {border, background} = useThemeColors();
+  const { border, background } = useThemeColors();
 
   const onCloseButtonClick = () => {
     navigation.goBack();
@@ -33,7 +33,7 @@ const SearchDishes: React.FC<SearchDishesProps> = () => {
           </Button>
         </View>
         <View style={styles.searchBarIconContainer}>
-          <SearchBar placeholder="Search a dish name" />
+          <SearchBar placeholder="Cari menu favorit kamu..." />
         </View>
       </Container>
       <SectionList
@@ -43,17 +43,18 @@ const SearchDishes: React.FC<SearchDishesProps> = () => {
         sections={mockPlaceDetails.dishSection || []}
         keyExtractor={(item) => item.title}
         ItemSeparatorComponent={() => (
-          <Container style={[styles.separator, {backgroundColor: border}]} />
+          <Container style={[styles.separator, { backgroundColor: border }]} />
         )}
-        renderSectionHeader={({section}) => (
+        renderSectionHeader={({ section }) => (
           <View
             style={{
               backgroundColor: background,
-            }}>
+            }}
+          >
             <Text style={styles.sectionHeaderText}>{section.title}</Text>
           </View>
         )}
-        renderItem={({item}) => {
+        renderItem={({ item }) => {
           return <DishItem data={item} />;
         }}
       />

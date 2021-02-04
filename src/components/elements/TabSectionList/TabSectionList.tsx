@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   View,
   SectionList as RNSectionList,
@@ -8,9 +8,9 @@ import {
   ViewToken,
   Animated,
   StyleProp,
-} from 'react-native';
-import TabBar from './TabBar';
-import styles from './styles';
+} from "react-native";
+import TabBar from "./TabBar";
+import styles from "./styles";
 
 interface IProps extends SectionListProps<any> {
   scrollToLocationOffset?: number;
@@ -45,7 +45,7 @@ export default class SectionList extends React.PureComponent<IProps, IState> {
       onViewableItemsChangedCallback,
     } = this.props;
 
-    const prepareSections = sections.map((item, index) => ({...item, index}));
+    const prepareSections = sections.map((item, index) => ({ ...item, index }));
 
     return (
       <View style={styles.tabSectionListContainer}>
@@ -53,14 +53,14 @@ export default class SectionList extends React.PureComponent<IProps, IState> {
           {...this.props}
           sections={prepareSections}
           onViewableItemsChanged={(info: any) => {
-            const {viewableItems} = info;
+            const { viewableItems } = info;
             if (!this.blockUpdateIndex && viewableItems[0]) {
               if (onViewableItemsChangedCallback) {
                 onViewableItemsChangedCallback(info);
               }
               const currentIndex = viewableItems[0].section.index;
               if (this.state.currentIndex !== currentIndex) {
-                this.setState({currentIndex});
+                this.setState({ currentIndex });
               }
             }
           }}
@@ -78,7 +78,7 @@ export default class SectionList extends React.PureComponent<IProps, IState> {
           tabBarScrollViewStyle={tabBarScrollViewStyle}
           currentIndex={this.state.currentIndex}
           onPress={(index: number) => {
-            this.setState({currentIndex: index});
+            this.setState({ currentIndex: index });
             this.blockUpdateIndex = true;
 
             const sectionList = this.sectionList.current;

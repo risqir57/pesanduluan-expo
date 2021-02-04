@@ -36,8 +36,8 @@ const DeliveryInformation: React.FC<DeliveryInformationProps> = () => {
 
   return (
     <Section
-      title="Deliver to"
-      actionButtonText="Change address"
+      title="Kirim ke"
+      actionButtonText="Ubah alamat"
       onButtonActionPressed={onChangeAddressButtonPressed}
     >
       <Container>

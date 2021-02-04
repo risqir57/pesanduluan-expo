@@ -10,13 +10,15 @@ type DriverInformationProps = {};
 
 const { id, name, avatar, ratings, averageRating } = driver;
 
+const date = new Date();
+
 const DriverInformation: React.FC<DriverInformationProps> = () => {
   return (
     <ListRowItem
       id={id}
       title={name}
-      note="Your driver"
-      subTitle="Delivery time 14:04 PM"
+      note="Driver"
+      subTitle={`Di kirim pukul ${date.getHours()}:${date.getHours()}`}
       containerStyle={styles.driverContainer}
       leftIcon={
         <Image

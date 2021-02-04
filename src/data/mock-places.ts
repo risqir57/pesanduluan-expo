@@ -38,7 +38,7 @@ export const mockDishDetails: Dish = {
   title: faker.commerce.productName(),
   description: faker.lorem.lines(3),
   price: faker.commerce.price(5, 60),
-  coverImage: require("@src/assets/dish-details/cover-photo.jpg"),
+  coverImage: require("@src/assets/dish-details/cover-photo.jpeg"),
   sideDishes: [
     {
       title: "Cake",

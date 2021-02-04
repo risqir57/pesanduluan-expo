@@ -1,45 +1,45 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Animated,
   SafeAreaView,
   View,
   KeyboardAvoidingView,
   Platform,
-} from 'react-native';
-import {useTheme, useNavigation} from '@react-navigation/native';
-import {Text, Button} from '@src/components/elements';
-import {mockDishDetails, Dish} from '@src/data/mock-places';
-import CartContext from '@src/context/cart-context';
-import HeadingInformation from './HeadingInformation';
-import SideDishes from './SideDishes';
-import AddToBasketForm from './AddToBasketForm';
-import {formatCurrency} from '@src/utils/number-formatter';
-import styles from './styles';
+} from "react-native";
+import { useTheme, useNavigation } from "@react-navigation/native";
+import { Text, Button } from "@src/components/elements";
+import { mockDishDetails, Dish } from "@src/data/mock-places";
+import CartContext from "@src/context/cart-context";
+import HeadingInformation from "./HeadingInformation";
+import SideDishes from "./SideDishes";
+import AddToBasketForm from "./AddToBasketForm";
+import { formatCurrency } from "@src/utils/number-formatter";
+import styles from "./styles";
 
 type DishDetailsProps = {};
 
 export const DishDetails: React.FC<DishDetailsProps> = () => {
   const [totalPrice, setTotalPrice] = React.useState(
-    parseFloat(mockDishDetails.price),
+    parseFloat(mockDishDetails.price)
   );
   const [selectedSideDishes, setSelectedSideDishes] = React.useState<Dish[]>(
-    [],
+    []
   );
   const [scrollY] = React.useState(new Animated.Value(0));
   const {
-    colors: {background},
+    colors: { background },
   } = useTheme();
-  const {goBack} = useNavigation();
-  const {updateCartItems} = React.useContext(CartContext);
+  const { goBack } = useNavigation();
+  const { updateCartItems } = React.useContext(CartContext);
 
   const addSideDishToBasket = React.useCallback(
     (dish: Dish) => {
       const existedDishIndex = selectedSideDishes.find(
-        (item: Dish) => item.id === dish.id,
+        (item: Dish) => item.id === dish.id
       );
       if (existedDishIndex) {
         setSelectedSideDishes(
-          selectedSideDishes.filter((item: Dish) => item.id !== dish.id),
+          selectedSideDishes.filter((item: Dish) => item.id !== dish.id)
         );
         setTotalPrice(totalPrice - parseFloat(existedDishIndex.price));
       } else {
@@ -47,20 +47,20 @@ export const DishDetails: React.FC<DishDetailsProps> = () => {
         setTotalPrice(totalPrice + parseFloat(dish.price));
       }
     },
-    [selectedSideDishes, totalPrice],
+    [selectedSideDishes, totalPrice]
   );
 
   const updateTotalDishAmount = React.useCallback(
     (amount: number) => {
       const totalSelectedDishPrice = selectedSideDishes.reduce(
         (prevValue, currentValue) => prevValue + parseFloat(currentValue.price),
-        0,
+        0
       );
       setTotalPrice(
-        parseFloat(mockDishDetails.price) * amount + totalSelectedDishPrice,
+        parseFloat(mockDishDetails.price) * amount + totalSelectedDishPrice
       );
     },
-    [selectedSideDishes],
+    [selectedSideDishes]
   );
 
   const onAddToBasketButtonPressed = () => {
@@ -71,7 +71,7 @@ export const DishDetails: React.FC<DishDetailsProps> = () => {
           sideDishes: selectedSideDishes,
         },
       ],
-      totalPrice,
+      totalPrice
     );
     goBack();
   };
@@ -84,13 +84,13 @@ export const DishDetails: React.FC<DishDetailsProps> = () => {
   const coverScale = scrollY.interpolate({
     inputRange: [-200, 0],
     outputRange: [2, 1],
-    extrapolateRight: 'clamp',
+    extrapolateRight: "clamp",
   });
 
   const headerOpacity = scrollY.interpolate({
     inputRange: [150, 250],
     outputRange: [0, 1],
-    extrapolate: 'clamp',
+    extrapolate: "clamp",
   });
 
   return (
@@ -98,8 +98,9 @@ export const DishDetails: React.FC<DishDetailsProps> = () => {
       <View style={styles.rootContainer}>
         <KeyboardAvoidingView
           style={styles.keyboardAvoidingView}
-          behavior={Platform.OS === 'ios' ? 'position' : 'height'}
-          enabled>
+          behavior={Platform.OS === "ios" ? "position" : "height"}
+          enabled
+        >
           <Animated.ScrollView
             onScroll={Animated.event(
               [
@@ -113,8 +114,9 @@ export const DishDetails: React.FC<DishDetailsProps> = () => {
               ],
               {
                 useNativeDriver: true,
-              },
-            )}>
+              }
+            )}
+          >
             <Animated.View
               style={[
                 styles.coverPhotoContainer,
@@ -125,7 +127,8 @@ export const DishDetails: React.FC<DishDetailsProps> = () => {
                     },
                   ],
                 },
-              ]}>
+              ]}
+            >
               <Animated.Image
                 source={mockDishDetails.coverImage || {}}
                 style={[
@@ -151,7 +154,8 @@ export const DishDetails: React.FC<DishDetailsProps> = () => {
         <View style={styles.addToBasketButtonContainer}>
           <Button
             childrenContainerStyle={styles.addToBasketButton}
-            onPress={onAddToBasketButtonPressed}>
+            onPress={onAddToBasketButtonPressed}
+          >
             <Text style={styles.addToBasketButtonText}>
               Tambahkan - {formatCurrency(totalPrice)}
             </Text>
@@ -164,7 +168,8 @@ export const DishDetails: React.FC<DishDetailsProps> = () => {
               opacity: headerOpacity,
               backgroundColor: background,
             },
-          ]}>
+          ]}
+        >
           <Text style={styles.headerTitle}>{mockDishDetails.title}</Text>
         </Animated.View>
       </View>

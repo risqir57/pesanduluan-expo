@@ -1,9 +1,9 @@
-import * as React from 'react';
-import {View} from 'react-native';
-import {useTheme} from '@react-navigation/native';
-import {Rating, Button, Icon, Text} from '@src/components/elements';
-import {Place} from '@src/data/mock-places';
-import styles from './styles';
+import * as React from "react";
+import { View } from "react-native";
+import { useTheme } from "@react-navigation/native";
+import { Rating, Button, Icon, Text } from "@src/components/elements";
+import { Place } from "@src/data/mock-places";
+import styles from "./styles";
 
 type PlaceCardInfoProps = {
   data: Place;
@@ -14,9 +14,9 @@ const PlaceCardInfo: React.FC<PlaceCardInfoProps> = ({
   data,
   ratingStarBackgroundColor,
 }) => {
-  const {distance, rating, time} = data;
+  const { distance, rating, time } = data;
   const {
-    colors: {border},
+    colors: { card },
   } = useTheme();
   return (
     <View style={styles.container}>
@@ -30,13 +30,15 @@ const PlaceCardInfo: React.FC<PlaceCardInfoProps> = ({
       </View>
       <View style={styles.buttonContainer}>
         <Button
-          style={[styles.button, {backgroundColor: border}]}
-          icon={<Icon isPrimary name="map-marker-alt" size={10} />}>
+          style={[styles.button, { backgroundColor: card }]}
+          icon={<Icon isPrimary name="map-marker-alt" size={10} />}
+        >
           <Text isPrimary style={styles.buttonText}>{`${distance}m`}</Text>
         </Button>
         <Button
-          style={[styles.button, {backgroundColor: border}]}
-          icon={<Icon isPrimary name="clock" size={10} />}>
+          style={[styles.button, { backgroundColor: card }]}
+          icon={<Icon isPrimary name="clock" size={10} />}
+        >
           <Text isPrimary style={styles.buttonText}>{`${time}'`}</Text>
         </Button>
       </View>

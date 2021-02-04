@@ -1,9 +1,9 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Rating as BaseRating,
   RatingProps as BaseRatingProps,
-} from 'react-native-ratings';
-import {useTheme} from '@react-navigation/native';
+} from "react-native-ratings";
+import { useTheme } from "@react-navigation/native";
 
 interface OwnProps {
   value?: number;
@@ -21,7 +21,7 @@ const Rating: React.FC<RatingProps> = ({
   ...rest
 }) => {
   const {
-    colors: {primary, card},
+    colors: { primary, card },
   } = useTheme();
   return (
     <BaseRating

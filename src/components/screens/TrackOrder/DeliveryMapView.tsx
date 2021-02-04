@@ -11,6 +11,7 @@ import styles from "./styles";
 import { darkModeStyle } from "@src/utils/googleMapStyle";
 import { useTheme } from "@react-navigation/native";
 import { AppImagePlaceholder } from "@src/constants";
+// import * as Location from 'expo-location'; // https://docs.expo.io/versions/latest/sdk/location/
 
 type DeliveryMapViewProps = {};
 

@@ -20,6 +20,7 @@
     "accounting": "^0.4.1",
     "dayjs": "^1.8.35",
     "expo": "~40.0.0",
+    "expo-location": "~10.0.0",
     "expo-status-bar": "~1.0.3",
     "faker": "^4.1.0",
     "lottie-ios": "3.1.8",

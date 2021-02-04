@@ -1,15 +1,17 @@
-import * as React from 'react';
-import {Container, Text} from '@src/components/elements';
-import styles from './styles';
+import * as React from "react";
+import { Container, Text } from "@src/components/elements";
+import styles from "./styles";
 
 type DeliveryTimeProps = {};
+
+const date = new Date();
 
 const DeliveryTime: React.FC<DeliveryTimeProps> = () => {
   return (
     <Container style={styles.deliveryTimeContainer}>
-      <Text isSecondary>Estimated Delivery Time</Text>
+      <Text isSecondary>Waktu Pengantaran</Text>
       <Text isPrimary isHeadingTitle isBold>
-        04:14 PM
+        {date.getHours()}:{date.getMinutes()}
       </Text>
     </Container>
   );

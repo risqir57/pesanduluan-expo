@@ -16,6 +16,7 @@ type TabBarIconProps = {
   color: string;
   size: number;
 };
+
 const Tab = createBottomTabNavigator();
 const { Navigator, Screen } = Tab;
 
@@ -30,8 +31,8 @@ const renderTabBarIcon = (routeName: string) => {
       case "History":
         iconName = "history";
         break;
-      case "Notifikasi":
-        iconName = "bell";
+      case "Promo":
+        iconName = "tags";
         break;
       case "Akun":
         iconName = "user";
@@ -51,6 +52,7 @@ const TabNavigation: React.FC<TabNavigationProps> = () => {
     <Navigator
       initialRouteName="Home"
       tabBarOptions={{
+        keyboardHidesTabBar: true,
         style: {
           height: 55,
         },
@@ -72,7 +74,7 @@ const TabNavigation: React.FC<TabNavigationProps> = () => {
     >
       <Screen name="Beranda" component={HomeStack} />
       <Screen name="History" component={ActivityHistoryStack} />
-      <Screen name="Notifikasi" component={NotificationStack} />
+      <Screen name="Promo" component={NotificationStack} />
       <Screen name="Akun" component={AccountStack} />
       {/* <Screen name="Documentation" component={Documentation} /> */}
     </Navigator>

@@ -1,6 +1,6 @@
-import {ImageSourcePropType} from 'react-native';
+import { ImageSourcePropType } from "react-native";
 
-const faker = require('faker');
+const faker = require("faker");
 
 export type Driver = {
   id: string;
@@ -12,8 +12,8 @@ export type Driver = {
 
 export const driver: Driver = {
   id: faker.random.uuid(),
-  name: faker.name.findName(),
-  ratings: '144',
-  averageRating: '4.6',
-  avatar: require('@src/assets/drivers/avatar.png'),
+  name: "Nama Ojol",
+  ratings: "144",
+  averageRating: "4.6",
+  avatar: require("@src/assets/drivers/avatar.png"),
 };
