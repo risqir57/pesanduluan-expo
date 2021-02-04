@@ -1,20 +1,20 @@
-import * as React from 'react';
-import {Animated, SafeAreaView, View} from 'react-native';
-import {useTheme} from '@react-navigation/native';
-import {Container, Text} from '@src/components/elements';
-import HeadingInformation from './HeadingInformation';
-import PopularDishes from './PopularDishes';
-import TabSectionList from '@src/components/elements/TabSectionList';
-import DishItem from '@src/components/common/DishItem';
-import {mockPlaceDetails} from '@src/data/mock-places';
-import styles from './styles';
-import BasketSummary from './BasketSummary';
+import * as React from "react";
+import { Animated, SafeAreaView, StatusBar, View } from "react-native";
+import { useTheme } from "@react-navigation/native";
+import { Container, Text } from "@src/components/elements";
+import HeadingInformation from "./HeadingInformation";
+import PopularDishes from "./PopularDishes";
+import TabSectionList from "@src/components/elements/TabSectionList";
+import DishItem from "@src/components/common/DishItem";
+import { mockPlaceDetails } from "@src/data/mock-places";
+import styles from "./styles";
+import BasketSummary from "./BasketSummary";
 
 type PlaceDetailsProps = {};
 
 const PlaceDetails: React.FC<PlaceDetailsProps> = () => {
   const {
-    colors: {primary, border, card},
+    colors: { primary, border, card },
   } = useTheme();
 
   const [scrollY] = React.useState(new Animated.Value(0));
@@ -27,17 +27,18 @@ const PlaceDetails: React.FC<PlaceDetailsProps> = () => {
   const coverScale = scrollY.interpolate({
     inputRange: [-200, 0],
     outputRange: [2, 1],
-    extrapolateRight: 'clamp',
+    extrapolateRight: "clamp",
   });
 
   const tabBarOpacity = scrollY.interpolate({
     inputRange: [200, 500],
     outputRange: [0, 1],
-    extrapolate: 'clamp',
+    extrapolate: "clamp",
   });
 
   return (
     <SafeAreaView style={styles.rootContainer}>
+      <StatusBar translucent backgroundColor="transparent" />
       <View style={styles.tabSectionListContainer}>
         <TabSectionList
           ListHeaderComponent={
@@ -52,7 +53,8 @@ const PlaceDetails: React.FC<PlaceDetailsProps> = () => {
                       },
                     ],
                   },
-                ]}>
+                ]}
+              >
                 {mockPlaceDetails.coverImage && (
                   <Animated.Image
                     source={mockPlaceDetails.coverImage}
@@ -77,29 +79,32 @@ const PlaceDetails: React.FC<PlaceDetailsProps> = () => {
           keyExtractor={(item) => item.title}
           stickySectionHeadersEnabled={false}
           scrollToLocationOffset={5}
-          tabBarStyle={[styles.tabBar, {opacity: tabBarOpacity}]}
-          tabBarScrollViewStyle={{backgroundColor: card}}
+          tabBarStyle={[styles.tabBar, { opacity: tabBarOpacity }]}
+          tabBarScrollViewStyle={{ backgroundColor: card }}
           ItemSeparatorComponent={() => (
-            <Container style={[styles.separator, {backgroundColor: border}]} />
+            <Container
+              style={[styles.separator, { backgroundColor: border }]}
+            />
           )}
-          renderTab={({title, isActive}) => {
+          renderTab={({ title, isActive }) => {
             const borderBottomWidth = isActive ? 2 : 0;
             return (
               <Container
                 style={{
                   borderBottomWidth,
                   borderColor: primary,
-                }}>
+                }}
+              >
                 <Text isPrimary={isActive && true} style={styles.tabText}>
                   {title}
                 </Text>
               </Container>
             );
           }}
-          renderSectionHeader={({section}) => (
+          renderSectionHeader={({ section }) => (
             <Text style={styles.sectionHeaderText}>{section.title}</Text>
           )}
-          renderItem={({item}) => {
+          renderItem={({ item }) => {
             return <DishItem data={item} />;
           }}
           onScroll={Animated.event(
@@ -114,7 +119,7 @@ const PlaceDetails: React.FC<PlaceDetailsProps> = () => {
             ],
             {
               useNativeDriver: true,
-            },
+            }
           )}
         />
       </View>

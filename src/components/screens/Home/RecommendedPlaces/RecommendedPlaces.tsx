@@ -28,7 +28,7 @@ const RecommendedPlaces: React.FC<RecommendedPlacesProps> = () => {
       <Carousel
         data={mockPlaces}
         itemWidth={Dimensions.get("window").width / 2 - 15}
-        renderContent={(item: Place, index, parallaxProps) => {
+        renderContent={(item: Place, _, parallaxProps) => {
           const { image, title, subTitle } = item;
           return (
             <Card

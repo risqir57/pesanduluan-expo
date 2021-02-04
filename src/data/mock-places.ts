@@ -81,7 +81,7 @@ export const mockDishDetails: Dish = {
 
 export const mockPlaceDetails: Place = {
   id: "1",
-  title: "Neapolitan pizza, Italy. Neapolitan pizza",
+  title: "Nama Outlet",
   coverImage: require("@src/assets/place-details/cover-photo.jpg"),
   image: require("@src/assets/place-details/main-photo.jpg"),
   subTitle: "Western, Spaghetti",
@@ -433,3 +433,13 @@ export const mockRemarkablePlace: RemarkablePlaceTab = {
     },
   ],
 };
+
+export const mockPopularDish: Dish[] = Array(8)
+  .fill(0)
+  .map((_) => ({
+    id: faker.random.uuid(),
+    title: faker.commerce.productName(),
+    description: faker.lorem.lines(2),
+    price: faker.commerce.price(5, 60),
+    image: require("@src/assets/dish-details/cover-photo.jpeg"),
+  }));

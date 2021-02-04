@@ -1,11 +1,11 @@
-import * as React from 'react';
-import {View, Animated} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {StackActions} from '@react-navigation/native';
-import LottieView from 'lottie-react-native';
-import {Container, Text, Button, Dialog} from '@src/components/elements';
-import CartContext from '@src/context/cart-context';
-import styles from './styles';
+import * as React from "react";
+import { View, Animated } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { StackActions } from "@react-navigation/native";
+import LottieView from "lottie-react-native";
+import { Container, Text, Button, Dialog } from "@src/components/elements";
+import CartContext from "@src/context/cart-context";
+import styles from "./styles";
 
 type OrderSuccessModalProps = {
   isVisible: boolean;
@@ -32,7 +32,7 @@ const OrderSuccessModal: React.FC<OrderSuccessModalProps> = ({
       useNativeDriver: true,
     }).start();
   }, [isAnimationFinished, fadeIn, fadeOut]);
-  const {clearCart} = React.useContext(CartContext);
+  const { clearCart } = React.useContext(CartContext);
 
   const _onAnimationFinish = () => {
     setIsAnimationFinished(true);
@@ -46,13 +46,13 @@ const OrderSuccessModal: React.FC<OrderSuccessModalProps> = ({
   const _onOrderSomethingElseButtonPressed = () => {
     clearCart();
     setIsVisble(false);
-    navigation.navigate('HomeScreen');
+    navigation.navigate("HomeScreen");
   };
 
   const _onTrackOrderButtonPressed = () => {
     clearCart();
     setIsVisble(false);
-    navigation.dispatch(StackActions.replace('TrackOrderScreen'));
+    navigation.dispatch(StackActions.replace("TrackOrderScreen"));
   };
 
   return (
@@ -60,7 +60,7 @@ const OrderSuccessModal: React.FC<OrderSuccessModalProps> = ({
       <Container style={styles.container}>
         <View style={styles.content}>
           <LottieView
-            source={require('@src/assets/animations/order-success.json')}
+            source={require("@src/assets/animations/order-success.json")}
             autoPlay
             loop={false}
             onAnimationFinish={_onAnimationFinish}
@@ -68,33 +68,37 @@ const OrderSuccessModal: React.FC<OrderSuccessModalProps> = ({
           />
           {!isAnimationFinished && (
             <Animated.View
-              style={[styles.processingOrderContainer, {opacity: fadeOut}]}>
+              style={[styles.processingOrderContainer, { opacity: fadeOut }]}
+            >
               <Text isBold>Processing Your Order...</Text>
             </Animated.View>
           )}
           <Animated.View
-            style={[styles.successMessageContainer, {opacity: fadeIn}]}>
+            style={[styles.successMessageContainer, { opacity: fadeIn }]}
+          >
             <Text isHeadingTitle isBold isPrimary>
-              Thank you for your order.
+              Terima kasih!
             </Text>
             <Text isCenter style={styles.successMessage}>
-              You can track the delivery in the "Orders" section.
+              Anda dapat melacak pengiriman di bagian "Pesanan".
             </Text>
           </Animated.View>
         </View>
         <Animated.View
-          style={[styles.footerButtonContainer, {opacity: fadeIn}]}>
+          style={[styles.footerButtonContainer, { opacity: fadeIn }]}
+        >
           <Button isFullWidth onPress={_onTrackOrderButtonPressed}>
             <Text isWhite isBold>
-              Track My Order
+              Lacak Pesanan
             </Text>
           </Button>
           <Button
             isFullWidth
             isTransparent
             style={styles.orderSomethingButton}
-            onPress={_onOrderSomethingElseButtonPressed}>
-            <Text>Order Something Else</Text>
+            onPress={_onOrderSomethingElseButtonPressed}
+          >
+            <Text>Pesan Menu Lain</Text>
           </Button>
         </Animated.View>
       </Container>

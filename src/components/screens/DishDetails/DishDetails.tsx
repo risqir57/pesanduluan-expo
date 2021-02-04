@@ -5,6 +5,7 @@ import {
   View,
   KeyboardAvoidingView,
   Platform,
+  StatusBar,
 } from "react-native";
 import { useTheme, useNavigation } from "@react-navigation/native";
 import { Text, Button } from "@src/components/elements";
@@ -95,6 +96,7 @@ export const DishDetails: React.FC<DishDetailsProps> = () => {
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
+      <StatusBar translucent backgroundColor="transparent" />
       <View style={styles.rootContainer}>
         <KeyboardAvoidingView
           style={styles.keyboardAvoidingView}

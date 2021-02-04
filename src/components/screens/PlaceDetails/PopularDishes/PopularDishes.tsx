@@ -2,7 +2,13 @@ import * as React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Carousel, Section, Card, Text } from "@src/components/elements";
 import { Dimensions } from "react-native";
-import { mockPlaces, Place } from "@src/data/mock-places";
+import {
+  Dish,
+  mockDishDetails,
+  mockPlaces,
+  mockPopularDish,
+  Place,
+} from "@src/data/mock-places";
 import { formatCurrency } from "@src/utils/number-formatter";
 
 type PopularDishesProps = {};
@@ -25,16 +31,16 @@ const PopularDishes: React.FC<PopularDishesProps> = () => {
       onButtonActionPressed={_onButtonActionPressed}
     >
       <Carousel
-        data={mockPlaces}
+        data={mockPopularDish}
         itemWidth={Dimensions.get("window").width / 2 - 15}
-        renderContent={(item: Place, _, parallaxProps) => {
-          const { image, title, subTitle } = item;
+        renderContent={(item: Dish, _, parallaxProps) => {
+          const { image, title, description } = item;
           return (
             <Card
               coverImage={image}
               isSmallCover
               title={title}
-              subTitle={subTitle}
+              subTitle={description}
               parallaxProps={parallaxProps}
               onPress={_onPlaceItemPressed}
             >

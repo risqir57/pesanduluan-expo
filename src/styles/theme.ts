@@ -25,7 +25,7 @@ export const darkTheme: AppTheme = {
   colors: {
     ...DarkTheme.colors,
     primary: "#FC6A57",
-    secondary: "#ccc",
+    secondary: "#cccccc",
     backdrop: "rgb(242, 242, 242)",
     card: "#282828",
     background: "#121212",

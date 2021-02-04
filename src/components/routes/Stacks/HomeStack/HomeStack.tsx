@@ -76,7 +76,7 @@ const HomeStack: React.FC<HomeStackProps> = ({ navigation }) => {
       <Stack.Screen
         options={() => {
           return {
-            headerTitle: "Neapolitan Pizza",
+            headerTitle: "Nama Outlet",
             headerRight: _renderPlaceDetailHeaderRight,
             headerRightContainerStyle: styles.headerRightContainer,
           };
