@@ -63,10 +63,7 @@ const TabNavigation: React.FC<TabNavigationProps> = () => {
           fontSize: 11,
         },
       }}
-      screenOptions={(props) => {
-        const {
-          route: { name: routeName },
-        } = props;
+      screenOptions={({ route: { name: routeName } }) => {
         return {
           tabBarIcon: renderTabBarIcon(routeName),
         };

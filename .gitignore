@@ -14,3 +14,6 @@ web-build/
 
 # Expo
 ./-
+
+# Code
+yarn-error.log

@@ -4,8 +4,6 @@
     "description": "Aplikasi pemesanan dan reservasi restoran di seluruh Indonesia",
     "slug": "pesanduluan",
     "version": "1.0.0",
-    "owner": "Foodpedia",
-    "githuburl": "https://github.com/risqir57/pesanduluan-expo.git",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -24,7 +22,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.developerfoodpedia.pesanduluan"
     },
     "web": {
       "favicon": "./assets/favicon.png"

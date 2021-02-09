@@ -15,8 +15,7 @@ import styles from "./styles";
 type AccountStackProps = {} & ScreenNavigationProps;
 const Stack = createStackNavigator();
 
-const AccountStack: React.FC<AccountStackProps> = (props) => {
-  const { navigation } = props;
+const AccountStack: React.FC<AccountStackProps> = ({ navigation }) => {
   const _renderAddAddressHeaderRight = () => {
     return (
       <Icon
